@@ -64,6 +64,7 @@ export default {
     submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            this.$router.push('/index')
             // const parms = {...this.formName}
             //     console.log(this.formName)
             // login(parms).then((res)=>{

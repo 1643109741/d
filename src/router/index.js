@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// import  phoneLogin from '../components/phone/phoneLogin.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,9 +10,10 @@ const routes = [
     component: () => import( /* webpackChunkName: "login" */ '@/views/login/login.vue')
   },  
   {
-    path: '/home',
-    redirect: '/home/ConfigurationRecord'
-  },
+    path: '/index',
+    name: 'index',
+    component: () => import( /* webpackChunkName: "index" */ '@/views/index/index.vue')
+  }, 
 ]
 
 const router = new VueRouter({
