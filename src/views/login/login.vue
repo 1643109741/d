@@ -4,10 +4,10 @@
         <h2 class="title">The user login</h2>
          <el-form  :model="formName" :rules="rules" ref="ruleForm"  class="demo-ruleForm">
                 <el-form-item label="name" prop="username">
-                 <el-input class='inputs' v-model="formName.username"></el-input>
+                 <el-input class='inputs' placeholder="enter a name" v-model="formName.username"></el-input>
                </el-form-item>
                 <el-form-item label="password" prop="password">
-                   <el-input class='inputs' type="password" v-model="formName.password"  show-password></el-input>
+                   <el-input class='inputs' placeholder="enter a password" type="password" v-model="formName.password"  show-password></el-input>
                 </el-form-item>
            </el-form>
               <el-button style=" width:100%;" id="el-button"   type="primary"  @click="submitForm('ruleForm')">Login</el-button>
@@ -58,12 +58,22 @@ export default {
     }
     };
   },
+  created () {
+     var _self = this
+     document.onkeydown = function (e) {
+      var key = window.event.keyCode
+      if (key == 13 || key == 100) {
+        _self.submitForm('ruleForm')
+      }
+    }
+  },
   mounted() {
   },
   methods: {
     submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            sessionStorage.setItem('token','jlkjsaljljj')
             this.$router.push('/index')
             // const parms = {...this.formName}
             //     console.log(this.formName)

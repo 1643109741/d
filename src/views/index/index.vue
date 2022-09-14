@@ -1,13 +1,21 @@
 <template>
-  <div class="index">
-        <p>排行榜</p>
-    <div class="rows">
+   <div class="indexs">
+    <div  class="users">
+      <el-avatar> admin </el-avatar>
+    </div>
+     <div class="index">
+    <p>排行榜</p>
+    <div class="rows" 
+          v-loading="loading"
+          element-loading-text="拼命加载中"
+          element-loading-spinner="el-icon-loading"
+    >
       <template>
         <el-table
           :data="tableData"
           ref="addformLabelAlign"
           stripe
-          style="width: 100%"
+          style="width: 100%;"
         >
           <el-table-column prop="Rank" width="80" zh-label="Rank" label="Rank">
             <template slot-scope="scope">
@@ -33,15 +41,25 @@
               </span>
             </template>
           </el-table-column>
+           <el-table-column  zh-label="operation" label="Percentage" width="100">
+            <template slot-scope="scope">
+                <el-button type="text" @click="transferclick(scope.row)">转账</el-button>
+            </template>
+          </el-table-column>
         </el-table>
       </template>
+      <el-dialog :visible.sync="dialogVisible" :close-on-click-modal="false">
+      </el-dialog>
     </div>
   </div>
+   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      dialogVisible:false,
+      loading: false,
       tableData: [
         {
           Rank: "1",
@@ -71,6 +89,13 @@ export default {
     };
   },
   mounted() {},
+  methods: {
+    //转账按钮
+    transferclick(row){
+      this.dialogVisible = true
+      console.log(row);
+    }
+  },
 };
 </script>
 <style scoped>
@@ -101,5 +126,10 @@ p{
   	}
   p{
     display: block;
+  }
+  .users{
+    position: absolute;
+    top: 30px;
+    right: 57px;
   }
 </style>

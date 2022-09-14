@@ -12,12 +12,29 @@ const routes = [
   {
     path: '/index',
     name: 'index',
-    component: () => import( /* webpackChunkName: "index" */ '@/views/index/index.vue')
+    component: () => import( /* webpackChunkName: "index" */ '@/views/index/index.vue'),
+    meta: {
+      //需要登录后才能访问
+      requiresAuth: true,
+    }
   }, 
 ]
 
 const router = new VueRouter({
   routes
+})
+//路由拦截
+router.beforeEach((to, from, next) => {
+  if (sessionStorage.getItem('token')) {
+     
+      next()
+  } else {
+      if (to.meta.requiresAuth) {
+          next('/')
+      } else {
+          next()
+      }
+  }
 })
 
 // 先把VueRouter原型对象的push replace  方法保存一份 
