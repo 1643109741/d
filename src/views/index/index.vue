@@ -49,6 +49,11 @@
         </el-table>
       </template>
       <el-dialog :visible.sync="dialogVisible" :close-on-click-modal="false">
+        <span slot="footer"  class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible = false"
+            >提交</el-button
+          >
+        </span>
       </el-dialog>
     </div>
   </div>
@@ -132,4 +137,11 @@ p{
     top: 30px;
     right: 57px;
   }
+::v-deep .el-dialog__close{
+  display: none;
+}
+.dialog-footer{
+    display: flex;
+    justify-content: space-around;
+}
 </style>

@@ -11,7 +11,6 @@
                 </el-form-item>
            </el-form>
               <el-button style=" width:100%;" id="el-button"   type="primary"  @click="submitForm('ruleForm')">Login</el-button>
-    
       </el-form>
   </div>
 </template>
